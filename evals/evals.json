@@ -1,0 +1,24 @@
+{
+  "skill_name": "pdf-accessibility",
+  "comment": "Test prompts seeded for the next-session eval loop. Files reference the three benchmark PDFs in the project folder; copy them into eval input dirs when running. Assertions to be drafted during the run per skill-creator workflow.",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hey, our department publishes this PDF guide on our website and someone filed a complaint that it doesn't work with their screen reader. Can you check it and tell me what's wrong and how to fix it? I made it in Word originally and still have the .docx somewhere.",
+      "expected_output": "Runs checker (not text-only guessing); identifies the specific defects with WCAG references; produces plain-language report; classifies tier 1; gives Word-specific fix instructions (title, alt text, header row, tagged export) rather than PDF surgery.",
+      "files": ["Advanced-Credit-Guide.pdf"]
+    },
+    {
+      "id": 2,
+      "prompt": "I have a folder of PDFs we publish and I need to know which ones are accessibility problems and how bad each one is. Can you rank them and tell me what it would take to fix each?",
+      "expected_output": "Runs checker on all files; ranks by severity (untagged/broken > isolated defects); assigns triage tiers; asks about source file availability; distinguishes author-fixable from project-scale work; does not trust 'Tagged: yes' alone.",
+      "files": ["Advanced-Credit-Guide.pdf", "HHH-CFLP-Financial-Inclusion-Report-2016.pdf", "RSMIv1.pdf"]
+    },
+    {
+      "id": 3,
+      "prompt": "This old PDF book is important content for us but the source files are long gone. Is it fixable? If you can actually repair it, go ahead — but I need to be sure you don't change how it looks.",
+      "expected_output": "Audits first; classifies tier 3; works on a copy; applies mechanical fixes (lang/title/bookmarks) and heading re-leveling per remediation patterns; runs pixel-identity verification and reports it; re-runs checker with before/after delta; states honest residuals; does NOT add PDF/UA identifier.",
+      "files": ["RSMIv1.pdf"]
+    }
+  ]
+}
